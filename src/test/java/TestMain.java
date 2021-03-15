@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class TestMain {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -33,10 +34,14 @@ public class TestMain {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
 
         Main.main(null);
-        String expected = "1\t3\t\r\n2\t4\t";
-        String actual = outContent.toString();
+        int[] expected = new int[]{1, 3, 2, 4};
+        int[] actual = Arrays.stream(
+                outContent.toString()
+                        .replaceAll("[\\r\\n]", "")
+                        .split("\\t")
+        ).mapToInt(Integer::parseInt).toArray();
 
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -45,10 +50,14 @@ public class TestMain {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
 
         Main.main(null);
-        String expected = "-925\t-621\t-444\t-570\t\r\n-764\t-924\t853\t916\t\r\n-347\t-348\t-431\t783\t\r\n715\t-275\t-845\t654\t";
-        String actual = outContent.toString();
+        int[] expected = new int[]{-925, -621, -444, -570, -764, -924, 853, 916, -347, -348, -431, 783, 715, -275, -845, 654};
+        int[] actual = Arrays.stream(
+                outContent.toString()
+                        .replaceAll("[\\r\\n]", "")
+                        .split("\\t")
+        ).mapToInt(Integer::parseInt).toArray();
 
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -57,10 +66,14 @@ public class TestMain {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
 
         Main.main(null);
-        String expected = "311\t-475\t-330\t533\t169\t-753\t674\t\r\n-836\t939\t566\t-508\t-265\t425\t-806\t\r\n639\t75\t669\t889\t-781\t716\t-125\t\r\n-915\t569\t915\t608\t-207\t315\t482\t\r\n-300\t88\t555\t-787\t898\t213\t863\t\r\n-776\t403\t286\t782\t-795\t478\t702\t\r\n783\t-641\t688\t981\t912\t-854\t866\t";
-        String actual = outContent.toString();
+        int[] expected = new int[]{311, -475, -330, 533, 169, -753, 674, -836, 939, 566, -508, -265, 425, -806, 639, 75, 669, 889, -781, 716, -125, -915, 569, 915, 608, -207, 315, 482, -300, 88, 555, -787, 898, 213, 863, -776, 403, 286, 782, -795, 478, 702, 783, -641, 688, 981, 912, -854, 866};
+        int[] actual = Arrays.stream(
+                outContent.toString()
+                        .replaceAll("[\\r\\n]", "")
+                        .split("\\t")
+        ).mapToInt(Integer::parseInt).toArray();
 
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -69,10 +82,14 @@ public class TestMain {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
 
         Main.main(null);
-        String expected = "0\t0\t0\t0\t0\t\r\n0\t0\t0\t0\t0\t\r\n0\t0\t0\t0\t0\t\r\n0\t0\t0\t0\t0\t\r\n0\t0\t0\t0\t0\t";
-        String actual = outContent.toString();
+        int[] expected = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] actual = Arrays.stream(
+                outContent.toString()
+                        .replaceAll("[\\r\\n]", "")
+                        .split("\\t")
+        ).mapToInt(Integer::parseInt).toArray();
 
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
 }
