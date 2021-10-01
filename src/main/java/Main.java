@@ -21,11 +21,9 @@ public class Main {
         }
         for (int s = 0; s < n; s++) {
             for (int c = 0; c < n; c++) {
-                System.out.print(new_array[s][c]+" ");
+                System.out.print(new_array[s][c]+"\t");
             }
             System.out.println();
-            //System.out.println(all_array[0][0]);
-
         }
     }
 }
