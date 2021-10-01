@@ -23,7 +23,7 @@ public class Main {
             for (int c = 0; c < n; c++) {
                 System.out.print(new_array[s][c]+"\t");
             }
-            System.out.println();
+            System.out.print("\n");
         }
     }
 }
